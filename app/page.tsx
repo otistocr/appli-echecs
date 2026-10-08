@@ -1,101 +1,162 @@
-import Image from "next/image";
+import Link from "next/link"
+import Sidebar from "@/components/Sidebar"
+import BoardDemo from "@/components/BoardDemo"
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen flex">
+      <Sidebar />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      <main className="flex-1 min-w-0 ml-56">
+        {/* Slim top bar */}
+        <header
+          className="border-b h-12 px-6 flex items-center justify-between sticky top-0 z-30 backdrop-blur"
+          style={{
+            borderColor: "var(--border)",
+            background: "color-mix(in srgb, var(--bg-deep) 85%, transparent)",
+          }}
+        >
+          <div className="text-xs" style={{ color: "var(--text-muted)" }}>
+            Home
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="text-xs" style={{ color: "var(--text-muted)" }}>
+              Nouveau · pas de progression
+            </span>
+          </div>
+        </header>
+
+        <div className="px-8 sm:px-12 py-12 sm:py-16 max-w-6xl">
+          {/* Hero */}
+          <div
+            className="text-xs uppercase tracking-widest mb-4"
+            style={{ color: "var(--accent)", letterSpacing: "0.3em" }}
           >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            ♛ ♜ ♝ ♞ ♟  ·  Training 1000-1500 ELO
+          </div>
+          <h1 className="text-4xl sm:text-6xl font-semibold tracking-tight leading-[1.05] mb-4 text-balance">
+            Progresse aux échecs
+            <br />
+            <span style={{ color: "var(--accent)" }}>sans y passer ta vie.</span>
+          </h1>
+          <p
+            className="text-lg leading-relaxed max-w-xl mb-10"
+            style={{ color: "var(--text-secondary)" }}
           >
-            Read our docs
-          </a>
+            Puzzles tactiques, ouvertures principales, endgames essentiels, analyse de tes
+            parties avec Stockfish. Rien à installer, aucun compte.
+          </p>
+
+          <div className="flex flex-wrap gap-3 mb-16">
+            <Link href="/puzzles" className="chip-btn">
+              Commencer par un puzzle
+            </Link>
+            <Link href="/academie" className="chip-btn chip-btn-ghost">
+              Lire l&apos;académie
+            </Link>
+          </div>
+
+          {/* Interactive board + intro */}
+          <div className="grid lg:grid-cols-[1fr_auto] gap-10 items-start mb-16">
+            <div>
+              <div
+                className="text-xs uppercase tracking-widest mb-3"
+                style={{ color: "var(--text-muted)", letterSpacing: "0.25em" }}
+              >
+                Essaie l&apos;échiquier
+              </div>
+              <h2 className="text-2xl font-semibold mb-3">
+                Bouge les pièces, l&apos;app valide les coups légaux.
+              </h2>
+              <p
+                className="text-base leading-relaxed max-w-md"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                Interface simple, drag-and-drop, statut de la partie en direct. C&apos;est
+                l&apos;échiquier qu&apos;on utilise partout dans l&apos;app pour les puzzles,
+                l&apos;analyse et l&apos;entraînement.
+              </p>
+            </div>
+            <BoardDemo />
+          </div>
+
+          {/* Modules preview */}
+          <section
+            className="border-t pt-14"
+            style={{ borderColor: "var(--border)" }}
+          >
+            <div
+              className="text-xs uppercase tracking-widest mb-6"
+              style={{ color: "var(--text-muted)", letterSpacing: "0.25em" }}
+            >
+              Ce que tu peux faire
+            </div>
+            <div className="grid md:grid-cols-3 gap-6">
+              <ModuleGroup
+                icon="♛"
+                title="Étudier"
+                items={[
+                  { name: "Académie", desc: "Théorie & principes" },
+                  { name: "Outils", desc: "Notations, calculs" },
+                ]}
+              />
+              <ModuleGroup
+                icon="♞"
+                title="Jouer"
+                items={[
+                  { name: "Ouvertures", desc: "Répertoire e4/d4" },
+                  { name: "Endgames", desc: "Positions clés" },
+                  { name: "Analyse PGN", desc: "Stockfish évalue" },
+                ]}
+              />
+              <ModuleGroup
+                icon="♟"
+                title="S'entraîner"
+                items={[
+                  { name: "Tactiques", desc: "Puzzles quotidiens" },
+                  { name: "Drill ouvertures", desc: "Coups par cœur" },
+                  { name: "Progression", desc: "ELO estimé, thèmes" },
+                ]}
+              />
+            </div>
+          </section>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
-  );
+  )
+}
+
+function ModuleGroup({
+  icon,
+  title,
+  items,
+}: {
+  icon: string
+  title: string
+  items: { name: string; desc: string }[]
+}) {
+  return (
+    <div>
+      <div
+        className="flex items-center gap-2 text-xs uppercase tracking-widest mb-3"
+        style={{ color: "var(--accent)", letterSpacing: "0.25em" }}
+      >
+        <span className="text-base">{icon}</span>
+        <span>{title}</span>
+      </div>
+      <div className="space-y-3">
+        {items.map((item) => (
+          <div key={item.name}>
+            <div className="text-base font-medium">{item.name}</div>
+            <div
+              className="text-xs mt-0.5"
+              style={{ color: "var(--text-muted)" }}
+            >
+              {item.desc}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
 }
