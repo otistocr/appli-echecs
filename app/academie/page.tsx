@@ -4,11 +4,11 @@ import { COURSES } from "@/lib/courses/manifest"
 
 export default function AcademiePage() {
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex flex-col lg:flex-row">
       <Sidebar />
-      <main className="flex-1 min-w-0 ml-56">
+      <main className="flex-1 min-w-0 lg:ml-56">
         <header
-          className="border-b h-12 px-6 flex items-center gap-4 sticky top-0 z-30 backdrop-blur"
+          className="border-b h-12 px-4 sm:px-6 flex items-center gap-4 sticky top-12 lg:top-0 z-30 backdrop-blur"
           style={{
             borderColor: "var(--border)",
             background: "color-mix(in srgb, var(--bg-deep) 85%, transparent)",
@@ -44,13 +44,13 @@ export default function AcademiePage() {
           </header>
 
           <div
-            className="grid grid-cols-[36px_1fr_100px_60px_20px] gap-4 py-2 border-b text-[10px] uppercase tracking-widest"
+            className="grid grid-cols-[28px_1fr_20px] sm:grid-cols-[36px_1fr_100px_60px_20px] gap-3 sm:gap-4 py-2 border-b text-[10px] uppercase tracking-widest"
             style={{ borderColor: "var(--border)", color: "var(--text-muted)" }}
           >
             <div>N°</div>
             <div>Titre</div>
-            <div>Niveau</div>
-            <div className="text-right">Durée</div>
+            <div className="hidden sm:block">Niveau</div>
+            <div className="hidden sm:block text-right">Durée</div>
             <div></div>
           </div>
 
@@ -81,7 +81,7 @@ function CourseRow({
 
   const inner = (
     <div
-      className="grid grid-cols-[36px_1fr_100px_60px_20px] gap-4 py-4 border-b items-baseline"
+      className="grid grid-cols-[28px_1fr_20px] sm:grid-cols-[36px_1fr_100px_60px_20px] gap-3 sm:gap-4 py-4 border-b items-baseline"
       style={{ borderColor: "var(--border)" }}
     >
       <div
@@ -102,15 +102,19 @@ function CourseRow({
         <div className="text-xs mt-1" style={{ color: "var(--text-secondary)" }}>
           {course.subtitle}
         </div>
+        <div className="sm:hidden text-[10px] uppercase tracking-wider mt-1.5">
+          <span style={{ color: levelColor }}>{course.level}</span>
+          <span style={{ color: "var(--text-muted)" }}> · {course.duration_min} min</span>
+        </div>
       </div>
       <div
-        className="text-xs font-medium uppercase tracking-wider"
+        className="hidden sm:block text-xs font-medium uppercase tracking-wider"
         style={{ color: levelColor }}
       >
         {course.level}
       </div>
       <div
-        className="text-xs text-right tabular-nums"
+        className="hidden sm:block text-xs text-right tabular-nums"
         style={{ color: "var(--text-secondary)" }}
       >
         {course.duration_min} min

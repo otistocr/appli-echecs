@@ -4,13 +4,13 @@ import BoardDemo from "@/components/BoardDemo"
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex flex-col lg:flex-row">
       <Sidebar />
 
-      <main className="flex-1 min-w-0 ml-56">
+      <main className="flex-1 min-w-0 lg:ml-56">
         {/* Slim top bar */}
         <header
-          className="border-b h-12 px-6 flex items-center justify-between sticky top-0 z-30 backdrop-blur"
+          className="border-b h-12 px-4 sm:px-6 flex items-center justify-between sticky top-12 lg:top-0 z-30 backdrop-blur"
           style={{
             borderColor: "var(--border)",
             background: "color-mix(in srgb, var(--bg-deep) 85%, transparent)",
@@ -26,7 +26,7 @@ export default function Home() {
           </div>
         </header>
 
-        <div className="px-8 sm:px-12 py-12 sm:py-16 max-w-6xl">
+        <div className="px-5 sm:px-8 lg:px-12 py-8 sm:py-16 max-w-6xl">
           {/* Hero */}
           <div
             className="text-xs uppercase tracking-widest mb-4"

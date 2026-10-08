@@ -86,3 +86,6 @@ textarea:focus, input[type="text"]:focus {
 ::selection { background: var(--accent); color: var(--bg-deep); }
 
 @layer utilities { .text-balance { text-wrap: balance; } }
+
+/* Fond de secours (iOS ignore background-attachment: fixed) */
+html { background: var(--bg-deep); }

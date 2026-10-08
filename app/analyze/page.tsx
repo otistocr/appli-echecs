@@ -162,11 +162,11 @@ export default function AnalyzePage() {
   }, [moves])
 
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex flex-col lg:flex-row">
       <Sidebar />
-      <main className="flex-1 min-w-0 ml-56">
+      <main className="flex-1 min-w-0 lg:ml-56">
         <header
-          className="border-b h-12 px-6 flex items-center justify-between sticky top-0 z-30 backdrop-blur"
+          className="border-b h-12 px-4 sm:px-6 flex items-center justify-between sticky top-12 lg:top-0 z-30 backdrop-blur"
           style={{
             borderColor: "var(--border)",
             background: "color-mix(in srgb, var(--bg-deep) 85%, transparent)",
