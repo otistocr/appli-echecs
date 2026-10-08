@@ -116,9 +116,9 @@ export default function Sidebar() {
             className="w-6 h-6 rounded-full flex items-center justify-center text-[10px]"
             style={{ background: "var(--surface-2)" }}
           >
-            N
+            M
           </div>
-          <span>neo</span>
+          <span>moi</span>
         </div>
         <div>v0.1</div>
       </div>
